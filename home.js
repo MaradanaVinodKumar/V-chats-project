@@ -1,5 +1,3 @@
-
-
 function displays(){
     document.getElementById('dotbar').style.display='none';
     document.getElementById('dotbarcancil').style.display='none';
@@ -65,10 +63,12 @@ function AddPerson(){
 
 function chats(name,value){ 
      
+    
     document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('link').click();
+    document.getElementById('link').click();
     });
     document.getElementById('chats').style.display='block';
+    document.getElementById('body').style.display='none';
     document.getElementById('chat-name').innerText=name;
     
     document.getElementById('chat-description').innerText=value;
@@ -76,6 +76,7 @@ function chats(name,value){
 
 function backs(){
     document.getElementById('chats').style.display='none';
+    document.getElementById('body').style.display='block';
 }
 var cou=1;
 
