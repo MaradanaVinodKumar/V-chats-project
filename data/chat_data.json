@@ -1,10 +1,33 @@
 {
-    "users":[
-        {"name":"chats","user_id":"123","pass":"123","id":1}
-    ],
-    "each_person":[
-        {"v-chat":[{"name":"uday","user_id":"123"}],"id":1}
-    ]
-    
-
+  "users": [
+    {
+      "name": "chats",
+      "user_id": "123",
+      "pass": "123",
+      "id": 1
+    },
+    {
+      "name": "vinod",
+      "user_id": "vinod2312",
+      "pass": "1234",
+      "id": 2
+    }
+  ],
+  "each_person": [
+    {
+      "peson": "chats",
+      "friends": [
+        {
+          "name": "uday",
+          "user_id": "123"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "person": "vinod",
+      "friends": [],
+      "id": 2
+    }
+  ]
 }
