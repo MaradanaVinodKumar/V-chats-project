@@ -32,7 +32,7 @@ function Add() {
 
     if (x.value != "") {
         closes();
-        AddPerson('manual');
+        AddPerson('manual',localStorage['user'],localStorage['id']);
     }
     else {
         x.style.borderColor = "red"
@@ -67,28 +67,34 @@ function AddPerson(method,name,user_id) {
     }
     else if(method=='manual')
     {
-        data_base("http://localhost:3000/users", 'get', {})
+        data_base("http://localhost:3000/each_person", 'get', {})
         .then(
             (data) => {
                 console.log("validation in then", data)
-                var user = document.getElementById('name').value;
-                var user_id = document.getElementById('description').value;
+                var user = document.getElementById('name')
+                var add_user_id = document.getElementById('description');
                 var bool = false;
-                for (each in data) {
-                    if ((data[each].name == user.value) && (data[each].user_id == user_id.value)) {
+                for (var each in data) {
+                    if ((data[each].person == user.value) && (data[each].user_id == add_user_id.value)) {
                         bool = true;
                         
-                       // persons.innerHTML += `<div onclick="chats('${document.getElementById('name').value}','${document.getElementById('description').value}')"><div id='pers+${count}' class='person'  > <div></div><div><span class="name">${document.getElementById('name').value}</span><br><span class="description">${document.getElementById('description').value}</span></div></div></div>`
-                       // count++;           
-                       var arr=data[each].friends;
-                       arr.push({"name":user.value,"user_id":user_id});    
-                        
-                       data_base(`http://localhost:3000/each_person/${data[each].id}`,'put',{"friends":arr})
+                           // arr.push({name:user.value,user_id:user_id.value});{"person":dat.name,"friends":arr,"user_id":dat.user_id}
+                           // console.log(arr);
+                            data_base(`http://localhost:3000/each_person?person=${name}&user_id=${user_id}`,'get',{})
+                            .then((dat)=>{
+                                dat[0].friends.push({name:user.value,user_id:add_user_id.value});
+                                data_base(`http://localhost:3000/each_person/${dat[0].id}`,'put',dat[0])
+                                console.log("this the get specific id ",dat[0],dat[0].person,dat[0].user_id);
+                               
+                            })
+                            
+                      
                         
                         break;
                     }
-                    console.log("data[" + each + "].name=" + data[each].name, pass, user);
+                    //console.log("data[" + each + "].name=" + data[each].name, pass, user);
                 }
+                
                 if (bool == false) {
                     alert("the user have no account please register!");
                 }
@@ -197,6 +203,8 @@ function validate() {
                         document.getElementById('main').style.display = 'block';
                         document.getElementById('login').style.display = 'none';
                         AddPerson('load',data[each].name,data[each].user_id);
+                        localStorage.setItem("user",data[each].name);
+                        localStorage.setItem("id",data[each].user_id);
                         break;
                     }
                     //console.log("data[" + each + "].name=" + data[each].name, pass, user);

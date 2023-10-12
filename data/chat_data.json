@@ -13,35 +13,60 @@
       "id": 2
     },
     {
-        "name":"uday",
-        "user_id":"uday123",
-        "pass":"1234",
-        "id":3
+      "name": "uday",
+      "user_id": "uday123",
+      "pass": "1234",
+      "id": 3
+    },
+    {
+      "name": "kartheek",
+      "user_id": "12345",
+      "pass": "1234",
+      "id": 4
     }
   ],
   "each_person": [
     {
-      "peson": "chats",
+      "person": "chats",
+      "friends": [
+        {
+          "name": "uday",
+          "user_id": "123"
+        },
+        {
+          "name": "chats",
+          "user_id": "123"
+        }
+      ],
+      "user_id": "123",
+      "id": 1
+    },
+    {
+      "person": "vinod",
       "friends": [
         {
           "name": "uday",
           "user_id": "123"
         }
       ],
-      "user_id":"123",
-      "id": 1
-    },
-    {
-      "person": "vinod",
-      "friends": [{"name":"uday","user_id":"123"}],
-      "user_id":"vinod2312",
+      "user_id": "vinod2312",
       "id": 2
     },
     {
-        "person":"uday",
-        "friends":[{"name":"vinod","user_id":"vinod2312"}],
-        "user_id":"uday123",
-        "id":3
+      "person": "uday",
+      "friends": [
+        {
+          "name": "vinod",
+          "user_id": "vinod2312"
+        }
+      ],
+      "user_id": "uday123",
+      "id": 3
+    },
+    {
+      "person": "kartheek",
+      "friends": [],
+      "id": 4
     }
   ]
 }
