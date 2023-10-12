@@ -11,6 +11,12 @@
       "user_id": "vinod2312",
       "pass": "1234",
       "id": 2
+    },
+    {
+        "name":"uday",
+        "user_id":"uday123",
+        "pass":"1234",
+        "id":3
     }
   ],
   "each_person": [
@@ -22,12 +28,20 @@
           "user_id": "123"
         }
       ],
+      "user_id":"123",
       "id": 1
     },
     {
       "person": "vinod",
-      "friends": [],
+      "friends": [{"name":"uday","user_id":"123"}],
+      "user_id":"vinod2312",
       "id": 2
+    },
+    {
+        "person":"uday",
+        "friends":[{"name":"vinod","user_id":"vinod2312"}],
+        "user_id":"uday123",
+        "id":3
     }
   ]
 }

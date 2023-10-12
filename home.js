@@ -32,7 +32,7 @@ function Add() {
 
     if (x.value != "") {
         closes();
-        AddPerson();
+        AddPerson('manual');
     }
     else {
         x.style.borderColor = "red"
@@ -45,17 +45,56 @@ function closes() {
 }
 
 var count = 1;
-function AddPerson() {
+function AddPerson(method,name,user_id) {
     var persons = document.getElementById('persons');
-    if (document.getElementById('description').value == '') {
-        document.getElementById('description').value = 'i am using S-chart';
+    if(method=='load')
+    {
+        data_base('http://localhost:3000/each_person','get')
+        .then((data)=>{
+            for(each in data){
+                if((data[each].person==name)&&(data[each].user_id==user_id))
+                {
+                    for(friend of data[each].friends)
+                    {
+                        persons.innerHTML += `<div onclick="chats('${friend.name}','${friend.user_id}')"><div id='pers+${count}' class='person'  > <div></div><div><span class="name">${friend.name}</span><br><span class="description">${friend.user_id}</span></div></div></div>`
+                        count++;
+                    }
+                    break;
+                }
+                
+            }
+        })
     }
-    else {
-        document.getElementById('description').value = "+91" + document.getElementById('description').value;
+    else if(method=='manual')
+    {
+        data_base("http://localhost:3000/users", 'get', {})
+        .then(
+            (data) => {
+                console.log("validation in then", data)
+                var user = document.getElementById('name').value;
+                var user_id = document.getElementById('description').value;
+                var bool = false;
+                for (each in data) {
+                    if ((data[each].name == user.value) && (data[each].user_id == user_id.value)) {
+                        bool = true;
+                        
+                       // persons.innerHTML += `<div onclick="chats('${document.getElementById('name').value}','${document.getElementById('description').value}')"><div id='pers+${count}' class='person'  > <div></div><div><span class="name">${document.getElementById('name').value}</span><br><span class="description">${document.getElementById('description').value}</span></div></div></div>`
+                       // count++;           
+                       var arr=data[each].friends;
+                       arr.push({"name":user.value,"user_id":user_id});    
+                        
+                       data_base(`http://localhost:3000/each_person/${data[each].id}`,'put',{"friends":arr})
+                        
+                        break;
+                    }
+                    console.log("data[" + each + "].name=" + data[each].name, pass, user);
+                }
+                if (bool == false) {
+                    alert("the user have no account please register!");
+                }
+            }
+        )
     }
-
-    persons.innerHTML += `<div onclick="chats('${document.getElementById('name').value}','${document.getElementById('description').value}')"><div id='pers+${count}' class='person'  > <div></div><div><span class="name">${document.getElementById('name').value}</span><br><span class="description">${document.getElementById('description').value}</span></div></div></div>`
-    count++;
 }
 
 function chats(name, value) {
@@ -125,8 +164,8 @@ function data_base(url, method, obj) {
         return data.then((res) => {
             return res.json()
                 .then((data) => {
-                    console.log("get data from " + url);
-                    console.log(data);
+                   // console.log("get data from " + url);
+                   // console.log(data);
                     return data;
                 })
                 .catch((err) => { console.log("error json"); })
@@ -154,12 +193,13 @@ function validate() {
                 for (each in data) {
                     if ((data[each].name == user.value) && (data[each].pass == pass.value)) {
                         bool = true;
-                        console.log("data[" + each + "].name=" + data[each].name);
+                       // console.log("data[" + each + "].name=" + data[each].name);
                         document.getElementById('main').style.display = 'block';
                         document.getElementById('login').style.display = 'none';
+                        AddPerson('load',data[each].name,data[each].user_id);
                         break;
                     }
-                    console.log("data[" + each + "].name=" + data[each].name, pass, user);
+                    //console.log("data[" + each + "].name=" + data[each].name, pass, user);
                 }
                 if (bool == false) {
                     alert("you have no account please register!");
