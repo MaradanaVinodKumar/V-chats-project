@@ -111,3 +111,145 @@ function locater(){
     }
    // document.getElementById('scroll').innerText=x.scrollTop+"  "+(x.scrollHeight-655);
 }
+
+function data_base(url,method,obj){
+    method=method.toLowerCase();
+    
+    if(method=='post'||method=='put')
+    {
+        fetch(url, {
+                method: method,
+                body: JSON.stringify(obj),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            })
+        
+    }
+    else if(method=='get')
+    {
+        let data = fetch(url)
+             return data.then((res) => {
+             return res.json()
+               .then((data) => {
+                    console.log("get data from "+url);
+                    console.log(data);
+                    return data;
+                })
+              .catch((err) => { console.log("error json"); })
+            })
+            data.catch((err) => { console.log("error in fetch and url is "+url);  })         
+    }
+    else
+    {
+        console.log(method +"is not a currect method");
+    }
+}
+
+
+
+/*login form js */
+
+function validate(){
+ 
+data_base("http://localhost:3000/users",'get',{})
+ .then(
+    (data)=>{
+                console.log("validation in then",data)
+                var user=document.getElementById('us-email');
+                var pass=document.getElementById('us-pass');
+                var bool=false;
+                for(each in data)
+                {
+                    if((data[each].name==user.value)&&(data[each].pass==pass.value))
+                    {
+                        bool=true;
+                        console.log("data["+each+"].name="+data[each].name);
+                        document.getElementById('main').style.display='block';
+                        document.getElementById('login').style.display='none';
+                        break;
+                    }
+                    console.log("data["+each+"].name="+data[each].name,pass,user);
+                }
+                if(bool==false)
+                {
+                    alert("you have no account please register!");
+                }
+            }
+ )
+ return false;
+ 
+}
+
+function registration(){
+ document.getElementById('form-main').style.display='none';
+ document.getElementById('registration').style.display='block';
+
+
+}
+function L_closes(){
+ document.getElementById('form-main').style.display='block';
+ document.getElementById('registration').style.display='none';
+}
+
+function reg_submit(){
+ pass=document.getElementById('reg-password');
+ mail=document.getElementById('email');
+ if(conf_validate())
+ {
+    
+    
+    data_base("http://localhost:3000/users",'get',{})
+    .then(
+            (data)=>{
+                        console.log("validation in then",data)
+                        var user=document.getElementById('us-email');
+                        var pass=document.getElementById('us-pass');
+                        var bool=false;
+                        for(each in data)
+                        {
+                            if((data[each].name==user.value)&&(data[each].pass==pass.value))
+                            {
+                                bool=true;
+                                alert('the user name and password is already excised');
+                                break;
+                            }
+                        }
+                        if(bool==false)
+                        {
+                            
+                        }
+                    }
+        )
+    
+ }
+ else
+ {
+     return false;
+ }
+}
+
+function conf_validate(){
+pass=document.getElementById('reg-password');
+cof=document.getElementById('conf');
+err=document.getElementById('error');
+if((cof.value!='')&&(pass.value!=''))
+{
+ if(pass.value!=cof.value)
+ {
+     err.style.color='rgb(145, 7, 7)';
+     err.innerText='Conformation password was wrong !';
+     return false;
+ }
+ else{
+     err.style.color='rgb(23, 121, 23)';
+     err.innerText='Conformation password and password is currect!';
+     return true;
+ }
+}
+else
+ {
+     err.innerText='';
+     return false;
+ }
+}
