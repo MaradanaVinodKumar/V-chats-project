@@ -8,7 +8,7 @@
     },
     {
       "name": "vinod",
-      "user_id": "vinod2312",
+      "user_id": "2514",
       "pass": "1234",
       "id": 2
     },
@@ -32,10 +32,6 @@
         {
           "name": "uday",
           "user_id": "123"
-        },
-        {
-          "name": "chats",
-          "user_id": "123"
         }
       ],
       "user_id": "123",
@@ -47,9 +43,13 @@
         {
           "name": "uday",
           "user_id": "123"
+        },
+        {
+          "name": "kartheek",
+          "user_id": "123"
         }
       ],
-      "user_id": "vinod2312",
+      "user_id": "2514",
       "id": 2
     },
     {
@@ -57,7 +57,7 @@
       "friends": [
         {
           "name": "vinod",
-          "user_id": "vinod2312"
+          "user_id": "2514"
         }
       ],
       "user_id": "uday123",
@@ -66,6 +66,7 @@
     {
       "person": "kartheek",
       "friends": [],
+      "user_id": "123",
       "id": 4
     }
   ]

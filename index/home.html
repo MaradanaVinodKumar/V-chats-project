@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+    <script src="home.js"></script>
+</head>
+
+<body onload="displays()">
+
+    <div id="main">
+        <div id="head">
+            <div>
+                <div id="S-chat">V-Chats</div>
+                <div id="sym"><i class="fa fa-camera hov" aria-hidden="true"></i> <i class="fa fa-search space hov"
+                        aria-hidden="true"></i> <i id="dotts" class="fa fa-ellipsis-v space hov" aria-hidden="true"
+                        onclick="bar()"></i></div>
+            </div>
+            <div id="chat"> Chats </div>
+        </div>
+        
+        <div id="dotbar" class="bar-animation">
+            <div id="add" class="bar " onclick="barAdd()">Add</div>
+        </div>
+        <div id="dotbarcancil" onclick="bar()"></div>
+        <div id="add-person" class="anim-add-person">
+            Enter New User Name <input type="text" id="name" autocomplete="off" spellcheck="false"><br>
+            Mobile: <br> <input type="text" id="description" autocomplete="off" spellcheck="false">
+            <br>
+            <button onclick="Add()">Add</button>
+            <button onclick="closes()">close</button>
+        </div>
+        <div id="chats" class="anim">
+            <div class="chat-head anim">
+                <i class="fa fa-arrow-left arrow" onclick="backs()" aria-hidden="true"></i>
+                <div class="dp"></div>
+                <div class="name margin" id="chat-name">Name</div>
+                <div class="description margin" id="chat-description"> description</div>
+            </div>
+            <div class="chat-body anim" onscroll="locater()" id="locater-body">
+                
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">message</div></div>
+               <!-- <div id="send-msg${cou}" class="send-msg"><div class="send-msg-len">message</div></div>
+                <div id="send-msg${cou}" class="send-msg"><div class="recv-msg-len">msg</div></div>-->
+                <div id="msg"> </div>
+                <p id="bottom"></p>
+            </div>
+            <div><div id="down" class="send-msg-anim"><a href="#bottom"><i class="fa-solid fa-angles-down arrow"></i></a></div></div>
+            
+            <div class="chat-footer anim">
+               
+                <input type="text" class="message" placeholder="Enter message hear..." id="messages" autofocus autocomplete="off" spellcheck="false">
+            
+                <a href="#bottom" id="link" ><i class="fa fa-paper-plane arrow" onclick="sends()"  aria-hidden="true"></i></a>
+              <!-- <p id="scroll"></p>-->
+            </div>
+
+        </div>
+
+        <div id="body">
+
+            <div onclick="chats('name','description')"> 
+           <div id="pers1" class="person">
+                <div></div>
+                <div><span class="name">name</span><br><span class="description">description</span></div>
+            </div>
+            </div>
+            <p id="persons"></p>
+
+        </div>
+    </div>
+    <div id="login">
+        <div>
+            <div id="form-main">
+                <div>
+                <h1>Login</h1>
+                </div>
+                <form action="" onsubmit="return validate()">
+                <div class="input">
+                 <i class="fa fa-user" aria-hidden="true"></i>
+                    <input type="text" placeholder="User name.." spellcheck="false" required autofocus autocomplete="off" id="us-email">
+                </div>
+                <div class="input">
+                    <i class="fa fa-lock" aria-hidden="true"></i> 
+                    <input type="password" placeholder="password" maxlength="10" required id="us-pass">
+                </div>
+                <div>
+                    <button type="submit" id="button">login</button>
+                    <span id="span" onclick="registration()">Registration.</span>
+                </div>
+            </form>
+            </div>
+    
+            <div id="registration">
+                <h1>Registration</h1>
+                <span id="close" onclick="L_closes()">X</span>
+                <form action="" onsubmit="return reg_submit()">
+                    <div class="input">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" placeholder="First name.." spellcheck="false" autofocus autocomplete="off" required id="reg_name">
+                    </div>
+                    <div class="input">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" placeholder="Last name.." spellcheck="false" autocomplete="off">
+                    </div>
+                    <div class="input">
+                        <i class="fa fa-globe" aria-hidden="true"></i>
+                        <input type="text" placeholder="User Id.. like (vinod123###)" required spellcheck="false" autocomplete="off" id="email">
+                    </div>
+                    <div class="input">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="text" placeholder="password.." required spellcheck="false" id="reg-password" autocomplete="off" onchange="conf_validate()">
+                    </div>
+                    <div class="input">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="password" placeholder="Conformation password.." required onchange="conf_validate()" id="conf">
+                    </div>
+                    <span id="error"></span>
+                    <div>
+                        <button type="submit" id="button">submit</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
